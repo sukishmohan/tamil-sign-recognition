@@ -1,0 +1,323 @@
+/* ══════════════════════════════════════════════════════════════
+   Tamil Sign Recognition — Web UI Styles
+   ══════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #07071a;
+  --panel-bg:  #0e0e28;
+  --border:    #1e1e50;
+  --accent:    #5b5ef4;
+  --accent2:   #a78bfa;
+  --green:     #22d3a0;
+  --red:       #f87171;
+  --yellow:    #fbbf24;
+  --text:      #e2e8f0;
+  --muted:     #6b7280;
+  --title-clr: #94a3b8;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', 'Nirmala UI', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  background: linear-gradient(90deg, #0d0d2b 0%, #121235 100%);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  font-size: 28px;
+  filter: drop-shadow(0 0 8px #f59e0b);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.brand-sub {
+  font-size: 12px;
+  color: var(--accent2);
+  font-weight: 500;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fps-badge {
+  background: #1a1a3e;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  min-width: 68px;
+  text-align: center;
+}
+
+.status-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-dot.offline { background: var(--red); box-shadow: 0 0 8px var(--red); }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.status-label {
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* ── Camera section ───────────────────────────────────────────── */
+.camera-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: #050510;
+  position: relative;
+}
+
+#video-feed {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Bottom panels ────────────────────────────────────────────── */
+.bottom-panels {
+  display: flex;
+  gap: 0;
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+  background: var(--panel-bg);
+  height: 165px;
+}
+
+.panel {
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.panel-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--title-clr);
+  text-transform: uppercase;
+}
+
+/* ── Left panel: predicted letter ─────────────────────────────── */
+.panel-letter {
+  width: 310px;
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.letter-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.letter-display {
+  font-size: 56px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  min-width: 64px;
+  text-align: center;
+  font-family: 'Nirmala UI', 'Latha', 'Segoe UI', sans-serif;
+  text-shadow: 0 0 24px var(--accent2);
+}
+
+/* Collecting ring */
+.collect-ring-wrap {
+  position: relative;
+  width: 54px;
+  height: 54px;
+}
+
+.ring-svg {
+  width: 54px; height: 54px;
+  transform: rotate(-90deg);
+}
+
+.ring-bg {
+  fill: none;
+  stroke: #1e1e50;
+  stroke-width: 5;
+}
+
+.ring-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.ring-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent2);
+}
+
+.collect-status {
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 16px;
+}
+
+/* Confidence bar */
+.conf-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.conf-bar-bg {
+  flex: 1;
+  height: 7px;
+  background: #1a1a3e;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.conf-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--green) 100%);
+  border-radius: 4px;
+  transition: width 0.25s ease;
+}
+
+.conf-pct {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+  min-width: 36px;
+  text-align: right;
+}
+
+/* ── Right panel: detected sequence ───────────────────────────── */
+.panel-sequence {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.seq-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.clear-btn {
+  background: #2a0a0a;
+  border: 1px solid #7f1d1d;
+  color: var(--red);
+  border-radius: 6px;
+  padding: 3px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.clear-btn:hover {
+  background: #450e0e;
+  border-color: var(--red);
+}
+
+.sequence-grid {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 6px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.sequence-grid::-webkit-scrollbar { width: 4px; }
+.sequence-grid::-webkit-scrollbar-track { background: transparent; }
+.sequence-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.seq-char {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  background: #141437;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 20px;
+  font-family: 'Nirmala UI', 'Latha', sans-serif;
+  color: #fff;
+  transition: background 0.15s;
+  animation: popIn 0.2s ease;
+}
+
+.seq-char.latest {
+  background: #1e1860;
+  border-color: var(--accent);
+  box-shadow: 0 0 10px rgba(91, 94, 244, 0.4);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.6); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}

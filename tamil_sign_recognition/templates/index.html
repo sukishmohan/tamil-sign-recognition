@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tamil Sign Recognition</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ TOP BAR ═══════════════════════════════ -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="brand-icon">🤚</span>
+      <div class="brand-text">
+        <span class="brand-title">Tamil Sign</span>
+        <span class="brand-sub">தமிழ் கை முத்திரை</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span class="fps-badge" id="fps-display">0 fps</span>
+      <span class="status-dot" id="status-dot"></span>
+      <span class="status-label" id="status-label">வாழும் · Camera Live</span>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════ CAMERA FEED ══════════════════════════════ -->
+  <main class="camera-section">
+    <img id="video-feed" src="/video_feed" alt="Camera Feed" />
+  </main>
+
+  <!-- ══════════════════════════ BOTTOM PANELS ══════════════════════════════ -->
+  <section class="bottom-panels">
+
+    <!-- Left: Predicted letter -->
+    <div class="panel panel-letter">
+      <p class="panel-title">PREDICTED LETTER</p>
+      <div class="letter-row">
+        <div class="letter-display" id="letter-display">—</div>
+        <div class="collect-ring-wrap">
+          <svg class="ring-svg" viewBox="0 0 60 60">
+            <circle class="ring-bg"   cx="30" cy="30" r="24"/>
+            <circle class="ring-fill" cx="30" cy="30" r="24"
+                    id="ring-fill"
+                    stroke-dasharray="150.796"
+                    stroke-dashoffset="150.796"/>
+          </svg>
+          <span class="ring-text" id="ring-text">0/7</span>
+        </div>
+      </div>
+      <p class="collect-status" id="collect-status">No hand detected</p>
+      <div class="conf-bar-wrap">
+        <div class="conf-bar-bg">
+          <div class="conf-bar-fill" id="conf-bar"></div>
+        </div>
+        <span class="conf-pct" id="conf-pct">0%</span>
+      </div>
+    </div>
+
+    <!-- Right: Detected sequence -->
+    <div class="panel panel-sequence">
+      <div class="seq-header">
+        <p class="panel-title">DETECTED SEQUENCE</p>
+        <button class="clear-btn" id="clear-btn">&#10005; Clear</button>
+      </div>
+      <div class="sequence-grid" id="sequence-grid">
+        <!-- Letters appear here -->
+      </div>
+    </div>
+
+  </section>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
